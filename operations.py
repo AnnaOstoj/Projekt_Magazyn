@@ -15,7 +15,7 @@ def get_items(items):
         item_unit_price = items[i]["unit_price"]
 
         items_in_stock += "{}\t\t{:<}\t\t{:<}\t\t{:<}\n".format(item_name, item_quantity, item_unit, item_unit_price)
-    return items_in_stock
+    return print(items_in_stock)
 
 def add_item(items):
     # get input from user
@@ -33,24 +33,56 @@ def sell_items(items, sold_items):
     l_items = len(items)
     for i in range(l_items):
         if items[i]["name"] == name:
-            items[i]["quantity"] -= quantity
+            new_quantity = float(items[i]["quantity"]) - quantity
+            items[i]["quantity"] = new_quantity
             sold_items.append({"name": name, "quantity": quantity, "unit": items[i]["unit"], "unit_price":items[i]["unit_price"]})
     return items, sold_items
 
 def get_costs(items):
     l_items = len(items)
-    cost_per_product = [items[i]["quantity"] * items[i]["unit_price"] for i in range(l_items)]
+    cost_per_product = [float(items[i]["quantity"]) * float(items[i]["unit_price"]) for i in range(l_items)]
     return sum(cost_per_product)
 
 def get_income(sold_items):
     l_sold_items = len(sold_items)
-    cost_per_product = [sold_items[i]["quantity"] * sold_items[i]["unit_price"] for i in range(l_sold_items)]
+    cost_per_product = [float(sold_items[i]["quantity"]) * float(sold_items[i]["unit_price"]) for i in range(l_sold_items)]
     return sum(cost_per_product)
 
-def show_revenue(costs, income):
+def show_revenue(items, sold_items):
+    income = get_income(sold_items)
+    costs = get_costs(items)
     revenue = income - costs
-    return f"Revenue breakdown (PLN):\nIncome: {income}\nCosts: {costs}\n=======\nRevenue: {revenue}"
+    return print(f"Revenue breakdown (PLN):\nIncome: {income}\nCosts: {costs}\n=======\nRevenue: {revenue}")
     
+def export_items_to_csv(items, file_path = "C:/Users/aniak/Desktop/magazyn.csv"):
 
+    import csv
+
+    with open(file_path, 'w', newline='') as csvfile:
+        fieldnames = ['name', 'quantity', 'unit', 'unit_price']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for i in range(len(items)):
+            writer.writerow(items[i])
+
+def export_sales_to_csv(sold_items, file_path = "C:/Users/aniak/Desktop/sales.csv"):
+    import csv
+
+    with open(file_path, 'w', newline='') as csvfile:
+        fieldnames = ['name', 'quantity', 'unit', 'unit_price']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for i in range(len(sold_items)):
+            writer.writerow(sold_items[i])
+
+def load_items_from_csv(items, file_path = "C:/Users/aniak/Desktop/magazyn.csv"):
+    import csv
+    
+    items.clear()
+    with open(file_path, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            items.append(row)
+    return items
 
     
