@@ -60,7 +60,7 @@ def show_revenue(items, sold_items):
     revenue = income - costs
     return print(f"Revenue breakdown (PLN):\nIncome: {income}\nCosts: {costs}\n=======\nRevenue: {revenue}")
     
-def export_items_to_csv(items, file_path = "C:/Users/aniak/Desktop/magazyn.csv"):
+def export_items_to_csv(items, file_path):
 
     import csv
 
@@ -71,7 +71,7 @@ def export_items_to_csv(items, file_path = "C:/Users/aniak/Desktop/magazyn.csv")
         for i in range(len(items)):
             writer.writerow(items[i])
 
-def export_sales_to_csv(sold_items, file_path = "C:/Users/aniak/Desktop/sales.csv"):
+def export_sales_to_csv(sold_items, file_path):
     import csv
 
     with open(file_path, 'w', newline='') as csvfile:
@@ -81,7 +81,7 @@ def export_sales_to_csv(sold_items, file_path = "C:/Users/aniak/Desktop/sales.cs
         for i in range(len(sold_items)):
             writer.writerow(sold_items[i])
 
-def load_items_from_csv(items, file_path = "C:/Users/aniak/Desktop/magazyn.csv"):
+def load_items_from_csv(items, file_path):
     import csv
     
     items.clear()
