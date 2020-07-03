@@ -1,4 +1,3 @@
-
 def close_application():
     exit()
 
