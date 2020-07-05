@@ -1,3 +1,5 @@
+import csv
+
 def close_application():
     exit()
 
@@ -61,8 +63,6 @@ def show_revenue(items, sold_items):
     
 def export_items_to_csv(items, file_path):
 
-    import csv
-
     with open(file_path, 'w', newline='') as csvfile:
         fieldnames = ['name', 'quantity', 'unit', 'unit_price']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -71,7 +71,6 @@ def export_items_to_csv(items, file_path):
             writer.writerow(items[i])
 
 def export_sales_to_csv(sold_items, file_path):
-    import csv
 
     with open(file_path, 'w', newline='') as csvfile:
         fieldnames = ['name', 'quantity', 'unit', 'unit_price']
@@ -81,7 +80,6 @@ def export_sales_to_csv(sold_items, file_path):
             writer.writerow(sold_items[i])
 
 def load_items_from_csv(items, file_path):
-    import csv
     
     items.clear()
     with open(file_path, newline='') as csvfile:

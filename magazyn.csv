@@ -1,7 +1,10 @@
 name,quantity,unit,unit_price
-Krzes³o,40.0,pc,210
+Krzes³o,30.0,pc,210
 Stó³,20,pc,500
 Sto³ek,99,pc,90
 Szafka,10,ps,300
 Obrus,800.0,pc,100
-Telewizor,10,pc,9000
+Telewizor,0.0,pc,9000
+Tapeta,100.0,pc,10
+Tapeta kwiatki,10.0,pc,15.0
+Tapeta kwiatki,20.0,pc,20.0
