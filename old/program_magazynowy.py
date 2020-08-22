@@ -16,7 +16,6 @@ To be improved:
 
 """
 
-
 if __name__ == "__main__":
 
     while True:
@@ -49,3 +48,4 @@ if __name__ == "__main__":
         elif operation_type == "load":
             op.load_items_from_csv(items, sys.argv[1])
             op.get_items(items)
+

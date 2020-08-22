@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2> Dashboard </h2>
+        <form method="POST" action="/dashboard">
+            <input type="submit" value="Load Products" name="btn" class="btn btn-primary">
+            <input type="submit" value="Export Products" name="btn" class="btn btn-primary">
+        </form>
+        <p>
+
+
+        </p>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <th>Product Name</th>
+            <th>Unit</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th></th>
+        </thead>
+    {% for product in product_list.values() %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.unit }}</td>
+            <td>{{ product.unit_price }}</td>
+            <td>{{ product.quantity }}</td>
+            <form method="POST" action="{{ url_for('sell_product', product_name=product.name) }}">
+                <td><input type="submit" value="Sell product" name="btn" class="btn btn-primary" ></td>
+            </form>
+        </tr>
+    {% endfor %}
+    <form method="POST" action="/dashboard">
+        {{ product_form.hidden_tag() }}
+        <tr>
+            {% for field in product_form if field.widget.input_type != 'hidden' %}
+                <td>{{ field }}</td>
+            {% endfor %}
+            <td>
+                <input type="submit" value="Add Product" name="btn" class="btn btn-primary">
+            </td>
+        </tr>
+
+    </form>
+    </table>
+</div>
+
+{% endblock %}

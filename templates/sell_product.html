@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Enter sold quantity</h2>
+<form method="POST">
+    {{ product_sale_form.hidden_tag() }}
+    <tr>
+        {% for field in product_sale_form if field.widget.input_type != 'hidden' %}
+            <td>{{ field }}</td>
+        {% endfor %}
+        <td>
+            <input type="submit" value="Sell Product" name="btn" class="btn btn-primary">
+        </td>
+    </tr>
+
+</form>
+{% endblock %}
